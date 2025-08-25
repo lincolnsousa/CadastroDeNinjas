@@ -13,10 +13,10 @@ public class NinjaModel {
     @Id
     // É usado para gerar um valor automático para Id. O ENUM strategy Identity cria Id de forma sequencial.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String nome;
-    String email;
-    int idade;
+    private Long id;
+    private String nome;
+    private String email;
+    private int idade;
 
     public NinjaModel() {
     }
