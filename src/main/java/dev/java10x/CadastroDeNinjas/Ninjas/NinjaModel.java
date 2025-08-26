@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class NinjaModel {
 
-    // Id é usado pra criar um id pra cada elemento da tabela. Ele sempre deve ser colocado acima do Long Id.
+    // Id é usado pra gerar um id pra cada elemento da tabela. Ele sempre deve ser colocado acima do Long Id.
     @Id
     // É usado para gerar um valor automático para Id. O ENUM strategy Identity cria Id de forma sequencial.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
