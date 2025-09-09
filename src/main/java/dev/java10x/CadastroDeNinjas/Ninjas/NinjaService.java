@@ -15,7 +15,7 @@ public class NinjaService {
     }
 
     // Metodo Listar
-    public List<NinjaModel> listarNinjar() {
+    public List<NinjaModel> listarNinja() {
         return ninjaRepository.findAll();
     }
 
