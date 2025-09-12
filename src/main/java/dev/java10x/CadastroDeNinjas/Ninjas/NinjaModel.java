@@ -10,8 +10,7 @@ import lombok.*;
 @Table(name = "tb_cadastro")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Data
 public class NinjaModel {
 
     // Id é usado pra gerar um id pra cada elemento da tabela. Ele sempre deve ser colocado acima do Long Id.
@@ -42,60 +41,4 @@ public class NinjaModel {
     @JoinColumn(name = "missoes_id") // Foreing Key ou Chave Estrangeira;
     private MissoesModel missoes;
 
-    // Construtores
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    public MissoesModel getMissoes() {
-        return missoes;
-    }
-
-    public void setMissoes(MissoesModel missoes) {
-        this.missoes = missoes;
-    }
-
-    public String getRank() {
-        return rank;
-    }
-
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
 }
