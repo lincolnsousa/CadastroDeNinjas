@@ -1,5 +1,9 @@
 package dev.java10x.CadastroDeNinjas.Ninjas;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +21,17 @@ public class NinjaController {
     }
 
     @GetMapping("/boasvindas")
+    @Operation(summary = "Mensagem de boas vindas", description = "Retorna uma mensagem de boas vindas ao usuário.")
     public String boasVinda() {
         return "Essa é minha primeira mensagem nessa rota";
     }
 
     @PostMapping("/criar")
+    @Operation(summary = "Cria um novo Ninja", description = "Cria um novo ninja gerando para um mesmo um Id mais atributos.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Ninja criado com sucesso."),
+            @ApiResponse(responseCode = "400", description = "Erro na criação do Ninja.")
+    })
     public ResponseEntity<String> criarNinja(@RequestBody NinjaDTO ninja) {
        NinjaDTO ninjaDTO = ninjaService.criarNinja(ninja);
        return ResponseEntity.status(HttpStatus.CREATED)
@@ -46,7 +56,15 @@ public class NinjaController {
     }
 
     @PutMapping("/alterar/{id}")
-    public ResponseEntity<?> alterarDdadosNinja(@PathVariable Long id, @RequestBody NinjaDTO ninjaDTO) {
+    @Operation(summary = "Altera a informação de um Ninja", description = "Altera as informações dos Ninjas no banco de dados.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Ninja alterado com sucesso."),
+            @ApiResponse(responseCode = "404", description = "Ninja não encontrado.")
+    })
+    public ResponseEntity<?> alterarDdadosNinja(@Parameter(description = "Usuário manda o id no caminho da requisição.")
+                                                    @PathVariable Long id,
+                                                @Parameter(description = "Usuário manda a informações que deseja ser alterada no Ninja.")
+                                                @RequestBody NinjaDTO ninjaDTO) {
         NinjaDTO ninja = ninjaService.alterarPorId(id, ninjaDTO);
         if (ninja != null) {
             ninjaService.alterarPorId(id, ninjaDTO);
